@@ -7,11 +7,13 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
+    //tema 11 - conectarse al tema 10 sin seguridad
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build(); // Este es el RestTemplate sin autenticación
     }
 
+    //tema 12 - conectarse al tema 10 con auth basica
     @Bean
     public RestTemplate authRestTemplate(RestTemplateBuilder builder) {
         return builder

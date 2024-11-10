@@ -26,25 +26,27 @@ public class helloController {
         return "Holla bienvenido";
     }
 
+    //tema 11 - conectarse al tema 10 sin seguridad
     @GetMapping("/callMicroPublic")
     public ResponseEntity<String> callMicroPublic() {
-        String response = restTemplate.getForObject("http://localhost:9000/listar_public", String.class);
+        String response = restTemplate.getForObject("http://localhost:9000/listar_admin", String.class);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    //tema 12 - conectarse al tema 10 con auth basica
     @GetMapping("/callMicroBasic")
     public ResponseEntity<String> callMicroBasic() {
         String response = authRestTemplate.getForObject("http://localhost:9000/listar_admin", String.class);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    /* usando Parametros*/
-    /*
-    @GetMapping("/callMicroserviceB")
-    public ResponseEntity<String> callMicroserviceB(@RequestParam(defaultValue = "MicroserviceB") String name) {
-        String response = restTemplate.getForObject("http://localhost:9001/api/v1/microserviceB/hello?name={name}", String.class, name);
+
+
+    @GetMapping("/callMicroGetID")
+    public ResponseEntity<String> callMicroserviceB(@RequestParam(defaultValue = "id") int id) {
+        String response = restTemplate.getForObject("http://localhost:9000/{id}", String.class, id);
         return ResponseEntity.ok(response);
     }
-    */
+
 
 }
