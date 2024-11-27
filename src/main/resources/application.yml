@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: SERVICIO-MICRO
+server:
+  port: 8080
+eureka:
+  instance:
+    # Intervalo de renovación más frecuente
+    lease-renewal-interval-in-seconds: 10
+    # Duración del arriendo antes de expirar
+    lease-expiration-duration-in-seconds: 20
+    # Usar IP en lugar de nombre de host
+    prefer-ip-address: true
+    # Nombre de instancia único
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
