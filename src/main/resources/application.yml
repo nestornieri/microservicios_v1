@@ -1,8 +1,13 @@
 spring:
   application:
-    name: SERVICIO-MICRO
+    name: TEMA11-MICRO
 server:
   port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 eureka:
   instance:
     # Intervalo de renovación más frecuente

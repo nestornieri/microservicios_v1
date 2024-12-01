@@ -14,14 +14,14 @@ import java.util.List;
 public class InstructorClientController {
 
     //private final String BASE_URL = "http://localhost:9000"; // URL base del proyecto original
-
+    String BASE_URL = "http://TEMA10-MICRO";
     @Autowired
     private RestTemplate restTemplate;
 
     // Obtener todos los instructores
     @GetMapping("/all")
     public ResponseEntity<List> getAllInstructors() {
-        String BASE_URL = "http://SERVICIO-INSTRUCTOR"; // Nombre del servicio registrado en Eureka
+        String BASE_URL = "http://TEMA10-MICRO:86102010a029b17a63830ee4eefa0b31";
         try {
             ResponseEntity<List> response = restTemplate.exchange(
                     BASE_URL + "/all",
@@ -39,7 +39,7 @@ public class InstructorClientController {
     // Obtener un instructor por ID
     @GetMapping("/{id}")
     public ResponseEntity<?> getInstructorById(@PathVariable Integer id) {
-        String BASE_URL = "http://SERVICIO-INSTRUCTOR";
+
         try {
             ResponseEntity<Instructor> response = restTemplate.getForEntity(
                     BASE_URL + "/" + id,
@@ -54,7 +54,6 @@ public class InstructorClientController {
     // Crear un instructor
     @PostMapping("/create")
     public ResponseEntity<Instructor> createInstructor(@RequestBody Instructor instructor) {
-        String BASE_URL = "http://SERVICIO-INSTRUCTOR";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Instructor> request = new HttpEntity<>(instructor, headers);
@@ -70,7 +69,6 @@ public class InstructorClientController {
     // Actualizar un instructor por ID
     @PutMapping("/update/{id}")
     public ResponseEntity<Instructor> updateInstructor(@PathVariable Integer id, @RequestBody Instructor instructor) {
-        String BASE_URL = "http://SERVICIO-INSTRUCTOR";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Instructor> request = new HttpEntity<>(instructor, headers);
@@ -86,7 +84,7 @@ public class InstructorClientController {
     // Eliminar un instructor por ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteInstructor(@PathVariable Integer id) {
-        String BASE_URL = "http://SERVICIO-INSTRUCTOR";
+        String BASE_URL = "http://TEMA10_MICRO";
         try {
             restTemplate.delete(BASE_URL + "/" + id);
             return ResponseEntity.ok("Instructor eliminado con éxito.");
